@@ -1,0 +1,19 @@
+
+.entete{
+    background-color: red;
+}
+
+.button {
+    background-color:#32475c ;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    outline: none;
+    color: white;
+}
+
+.button:hover{
+    color: silver;
+    background: #32475c;
+}

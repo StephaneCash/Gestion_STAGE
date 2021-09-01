@@ -1,0 +1,101 @@
+.homeEntreprise{
+    border: 0px solid red;
+}
+
+.img1{
+    border: 0px solid green;
+    width: 100%;
+    height: 400px;
+    margin-top: 65px;
+}
+
+.imgTigo{
+    height: 85px;
+    padding-top: 12px;
+}
+
+.imgAddidas{
+    height: 85px;
+    padding-top: 12px;
+}
+
+.sec0{
+    border: 0px solid black;
+    height: 350px;
+}
+
+.sec01, .sec02, .sec03{
+    border: 0px solid silver;
+    width: 30%;
+    height: 95%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px auto;
+    margin-right: 2%;
+    border-radius: 5px;
+}
+
+.sec01{
+    margin-left: 2.5%;
+}
+
+.sec011{
+    border: 0px solid red;
+    height: 30%;
+    text-align: center;
+}
+
+.sec012{
+    border: 1px solid black;
+    height: 65%;
+    padding: 9px;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+.sec021{
+    border: 0px solid red;
+    height: 30%;
+    text-align: center;
+}
+
+.sec022{
+    border: 1px solid black;
+    height: 65%;
+    padding: 9px;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+.sec031{
+    border: 0px solid red;
+    height: 30%;
+    text-align: center;
+}
+
+.sec032{
+    border: 1px solid black;
+    height: 65%;
+    padding: 9px;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+h3{
+    font-weight: bold;
+}
+
+.input1{
+    border: 1px solid red;
+}
+
+
+h1{
+    position: absolute;
+    top: 90px;
+    text-align: center;
+    font-size: 40px;
+    font-family: dotum;
+    font-weight: bold;
+    color: red;
+}

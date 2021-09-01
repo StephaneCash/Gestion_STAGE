@@ -1,0 +1,18 @@
+a{
+    color:#32475c;
+}
+
+button{
+    width: 120%;
+    margin-left: 10px;
+    outline: none;
+}
+
+.navbar{
+    min-height: 200px !important;
+    background-color: red;
+}
+
+body{
+    background-color:red !important;
+}
