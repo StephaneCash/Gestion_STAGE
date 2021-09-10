@@ -147,7 +147,7 @@
                                         <tr>
                                             <td><i style="font-size:60px; color:white" class="fa fa-graduation-cap"></i></td><td></td>
                                             <td></td><td></td><td></td><td></td><td></td><td></td>
-                                            <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nbrFiliere; ?></td>
+                                            <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nbrFiliere; ?></td>
                                         </tr>
                                         <tr>
                                             <td style="color:white; text-align:center; min-width:120px !important">Stagiaires reçus</td>
@@ -185,10 +185,18 @@
                                             <tr>
                                                 <td><i style="font-size:60px; color:white" class="fa fa-close"></i></td><td></td>
                                                 <td></td><td></td><td></td><td></td><td></td><td></td>
-                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nbrFiliere - $nbrDataTraites;  ?></td>
+                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <?php 
+                                                    if($nbrFiliere == 0){
+                                                        echo 0;
+                                                    }else{
+                                                        echo $nbrFiliere - $nbrDataTraites; 
+                                                    }
+                                                       
+                                                ?></td>
                                             </tr>
                                             <tr>
-                                                <td style="color:white; text-align:center; min-width:120px !important">Non traités</td>
+                                                <td style="color:white; text-align:center; min-width:100px !important">Non traités</td>
                                            </tr>
                                     </table>
                                 </div>
