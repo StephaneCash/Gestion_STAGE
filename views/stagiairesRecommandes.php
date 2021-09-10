@@ -171,7 +171,9 @@
                                             <tr>
                                                 <td><i style="font-size:60px; color:white" class="fa fa-history"></i></td><td></td>
                                                 <td></td><td></td><td></td><td></td><td></td><td></td>
-                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</td>
+                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href=''>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td style="color:white; text-align:center">History</td>
@@ -224,6 +226,7 @@
                                <?php }?>
                         </tbody>
                     </table>
+
                     <div>
                         <!-- Partie pagination -->
                         <ul class="pagination pagination-md" >
