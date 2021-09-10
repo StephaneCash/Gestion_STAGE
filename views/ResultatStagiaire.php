@@ -44,10 +44,10 @@
                 <div class="panel-heading" style=" color : #f6f6f6; background : #32475c"><h4> Saisir les données du nouveau Stagiaire :</h4> </div>
                 <div class="panel-body">
                     
-                    <form method="post" action="../traitement/insertNouveauResultat.php" class="form" enctype="multipart/form-data">  
-                        <div class="form-group"> 
+                    <form method="post" action="../traitement/insertNouveauResultat.php" class="form " enctype="multipart/form-data">  
+                        <div class="form-group "> 
                             <label for="nomS">Nom : </label>
-                            <input type="text" name="nomS" placeholder="Taper le nom" class="form-control" id="nomS"  required />
+                            <input type="text" name="nomS" placeholder="Taper le nom" class="form-control" id="nomS"  id="nom" required  />
                             
                             <label for="Postnom">Postnom : </label>
                             <input type="text" name="postnomS" placeholder="Taper le postnom" class="form-control" id="Postnom" required /> 
@@ -81,7 +81,7 @@
                         </div>
 
                          <!-- Bouton de recherche -->
-                        <button type="submit" class="btn btn" style="background : #32475c; margin-left:0px; color:white;"> 
+                        <button type="submit" class="btn btn" style="background : #32475c; margin-left:0px; color:white;" > 
                             <span class="glyphicon glyphicon-save"> </span> Enregistrer
                          </button>
                     </form>
@@ -89,6 +89,10 @@
             </div>
         </div>
         
+    <script>
+       
+    </script>
+
     </body>
 </html>
 

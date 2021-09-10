@@ -8,6 +8,8 @@
     $size=isset($_GET['size'])?$_GET['size']:4;
     $page=isset($_GET['page'])?$_GET['page']:1;
     $offset=($page-1)*$size;
+
+    $recupereeDataStagTraites = "SELECT * FROM resultat";
    
     // Vérification sur le choix de niveau de filière
     if($nomS==$nomS){
@@ -131,7 +133,7 @@
                     <!-- Début du tableau -->
 
                     <h3 style="margin-top: -10px"><i class="fa fa-table"></i> Tableau de Bord &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span style="font-size:14px" class="fa fa-plus-square"> Nouveaux stagiaires</span></h3> 
+                    </h3> 
                             
                             <div class="divGeneral">
                                 <div class="div1">
