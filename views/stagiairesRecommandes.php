@@ -5,7 +5,7 @@ require_once "../bd/connexion.php"; // Connexion à la BD
 
 $nomS = isset($_GET['nomS']) ? $_GET['nomS'] : "";
 
-$size = isset($_GET['size']) ? $_GET['size'] : 5;
+$size = isset($_GET['size']) ? $_GET['size'] : 8;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page - 1) * $size;
 
@@ -26,8 +26,23 @@ if ($nomS == $nomS) {
                   order by idS
                   limit $size
                   offset $offset";
-    $requeteCount = "select count(*) countS from stagiaire where nomS like '%$nomS%'";
+    
 }
+$requeteCount = "select count(*) countS from stagiaire where nomS like '%$nomS%'";
+
+//Requete de count pour les stagiaires rejetés
+$requeteCountRejete = "select count(*) countR from stagiaire where status=1";
+
+$requeRejet = $pdo->query($requeteCountRejete);
+$tabCountRej = $requeRejet->fetch();
+$nbrRej = $tabCountRej['countR'];
+
+$requeteCountA = "select count(*) countA from stagiaire where status=2";
+
+$requeAp = $pdo->query($requeteCountA);
+$tabCountA = $requeAp->fetch();
+$nbrApp = $tabCountA['countA'];
+
 
 $resultatF = $pdo->query($requete); // Exécution de la requete
 
@@ -60,21 +75,31 @@ if ($reste == 0) {
             width:100%;
             display: block;
         }
-        .div1, .div2, .div3, .div4{
-            height: 40px;
+        .div1, .div2, .div3{
+            height: 55px;
             width: auto;
             border-radius: 5px;
             display: inline-block;
-            margin-top: -26px;
             vertical-align: top;
             margin-bottom: 20px;
             color: white;
-            padding: 6px;
+            padding: 9px;
             font-size: 20px;
         }
 
         .div1{
             background-color: #2b77ba;
+        }
+
+        .div2{
+            border:1px solid red;
+            background-color:red;   
+            margin-left: 10px;
+        }
+        .div3{
+            border:1px solid green;
+            margin-left: 10px;
+            background-color:green;
         }
        table thead{
            background-color:#32475c;
@@ -96,8 +121,8 @@ if ($reste == 0) {
 
             <!-- Premier block composé d'entête et du corps (Côté recherche) -->
 
-            <div class="panel panel-primary" style="margin-top: 60px;">
-                <div class="panel-heading">Recherche des stagiaires... </div>
+            <div class="panel panel" style="margin-top: 60px; border:1px solid silver">
+                <div class="panel-heading" style="background-color:#32475c; color:aliceblue">Recherche des stagiaires... </div>
                 <div class="panel-body">
                                 <!-- partie corps coté champ text (Taper le nom de la filière) -->
                      <form method="get" action="stagiairesRecommandes.php" class="form-inline">
@@ -119,8 +144,8 @@ if ($reste == 0) {
             </div>
 
             <!-- Deuxième block composé d'entête et du corps (Côté affichage filière) -->
-            <div class="panel panel">
-                <div class="panel-heading" > </div>
+            <div class="panel panel" style="border:1px solid silver; margin-top:0px"><p></p>
+                <div class="panel-heading"  </div>
                 <div class="panel-body">
 
                     <!-- Début du tableau -->
@@ -129,6 +154,21 @@ if ($reste == 0) {
                                     <table>
                                         <tr>
                                             <td style="color: white; font-size: 25px;" class="td1"><?php if($nbrFiliere > 1){ echo $nbrFiliere . " reçus ";}else{ echo $nbrFiliere . ' reçu'; } ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="div2">
+                                    <table>
+                                        <tr>
+                                            <td style="color: white; font-size: 25px;" class="td1"><?php if($nbrRej > 1){ echo $nbrRej . " rejetés ";}else{ echo $nbrRej . ' rejeté'; } ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="div3">
+                                    <table>
+                                        <tr>
+                                            <td style="color: white; font-size: 25px;" class="td1"><?php if($nbrApp > 1){ echo $nbrApp . " approuvés ";}else{ echo $nbrApp . ' approuvé'; } ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -175,11 +215,11 @@ if ($reste == 0) {
                                            <?php }?>
 
                                            <?php if($filiere['status'] ==2){?>
-                                                <td>Approuvé</td>
+                                                <td style="color:green"> <i class="fa fa-check"></i>Approuvé</td>
                                            <?php } ?>
 
                                            <?php if($filiere['status'] ==1){?>
-                                                <td>Rejeté</td>
+                                                <td style="color:red"><i class="fa fa-close"></i> Rejeté</td>
                                            <?php } ?>
                                    </tr>
                                <?php }?>
