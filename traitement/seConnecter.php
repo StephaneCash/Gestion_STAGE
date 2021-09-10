@@ -7,6 +7,8 @@
     $login = isset($_POST['username'])?$_POST['username']:"";
     $pwd = isset($_POST['pwd'])?$_POST['pwd']:"";
 
+    //echo "Nom d'utilisateur : " .$login . " Mot de passe : " .$pwd;
+
     $requeteU = "select * from utilisateur where username='$login' and password='$pwd' ";
     $resultatU = $pdo->query($requeteU);
 

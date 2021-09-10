@@ -11,7 +11,7 @@
 
     echo "Id : " . $idS . " le status : " .$status ; 
     
-    /*if($status == 0)
+    if($status == 2)
         $newEtat = 2;
     else
         $newEtat = 1;
@@ -19,9 +19,9 @@
     $requete = "update stagiaire set status=? where idS=?";
     $param = array($newEtat, $idS);
     $resultat = $pdo->prepare($requete);
-    $resultat->execute($param);*/
+    $resultat->execute($param);
 
-    //header('location: ../views/stagiairesRecommandes.php');
+    header('location: ../views/stagiairesRecommandes.php');
 
     
 ?>
