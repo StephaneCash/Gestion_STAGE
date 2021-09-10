@@ -18,7 +18,7 @@
     $requeteE = "select * from entreprise";
 
     if($idfiliere==0){
-        $requeteStagiaire="SELECT idS, nomS, postnomS, prenomS, nomF, sexeS, section, niveau, nomE
+        $requeteStagiaire="SELECT idS, nomS, postnomS, prenomS, nomF, sexeS,status, section, niveau, nomE
                   from filiere as f, stagiaire as s, entreprise as en
                   where f.idF = s.idF and en.idE = s.idE
                   and (nomS like '%$nomPostnom%' or postnomS like '%$nomPostnom%')
@@ -46,7 +46,7 @@
     }*/
     
     else{
-        $requeteStagiaire="SELECT idS, nomS, postnomS,prenomS,nomF, sexeS, section, niveau, nomE 
+        $requeteStagiaire="SELECT idS, nomS, postnomS,prenomS,nomF, sexeS,status, section, niveau, nomE 
                   from filiere as f, stagiaire as s, entreprise as e
                   where f.idF = s.idF 
                   and (nomS like '%$nomPostnom%' or postnomS like '%$nomPostnom%')
@@ -85,7 +85,9 @@
         <meta charset="utf-8">
         <title>Gestion Stagiaires</title>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/Stage.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/Filiere.css">
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.css">
  
     </head>
 
@@ -102,7 +104,7 @@
           
             
             <!-- Premier block composé d'entête et du corps (Côté recherche) -->
-            <div class="panel panel-success" style="margin-top: 100px; border:none"> 
+            <div class="panel panel-success" style="margin-top: 70px; border:none"> 
                 <?php // echo $idEntreprise; ?>
                 <div class="panel-heading"> Recherche des Stagiaires</div>
                 <div class="panel-body" style="border : 1px solid silver;">
@@ -153,7 +155,7 @@
             
             <!-- Deuxième block composé d'entête et du corps (Côté affichage stagiaires) -->
             <div class="panel panel-primary" style="font-family: 'Raleway', sans-serif; font-size: 16px; "> 
-                <div class="panel-heading" style=" color : white; background : #32475c"><h4> Liste des Stagiaires ( <?php echo $nbrStagiaire; ?> Stagiaires ) </h4></div>
+                <div class="panel-heading" style=" color : white; background : #32475c"><h4> Liste des Stagiaires ( <?php if($nbrStagiaire > 1){ echo $nbrStagiaire . " Stagiaires";}else{ echo $nbrStagiaire . " Stagiaire"; } ?>) </h4></div>
                 <div class="panel-body">
                     
                     <!-- Début du tableau -->
@@ -171,6 +173,7 @@
                                 <th>Niveau</th>
                                 <th>Entreprise</th>
                                 <th>Actions</th>
+                                <th>Status</th>
                             </tr>
                         </thead>     
                         <tbody> 
@@ -207,6 +210,17 @@
                                                                 href="../traitement/supprimerStagiaire.php?idS=<?php echo $stagiaire['idS'] ?>" title="Suppression de la filière">
                                                                 <span class="glyphicon glyphicon-trash"> </span>
                                                             </a>
+                                                        </td>
+                                                        <td style="font-size: 18px; font-family:Segoe UI"> 
+                                                            <?php 
+                                                                if($stagiaire['status'] == 0){
+                                                                    echo ' <i class="fa fa-square "  title="En attente" style="color:orange;"> En attente</i> ';
+                                                                }elseif($stagiaire['status']==1){
+                                                                    echo ' <i class="fa fa-close "  title="Non approuvé" style="color:red"> Non approuvé </i> ';
+                                                                }elseif($stagiaire['status']==2){
+                                                                    echo ' <i class="fa fa-check "  title="Approuvé" style="color:green"> Approuvé </i> ';
+                                                                }
+                                                             ?>
                                                         </td>
                                                     </tr>
                                                 </div>
