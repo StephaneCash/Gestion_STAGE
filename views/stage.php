@@ -214,7 +214,7 @@
                                                         <td style="font-size: 18px; font-family:Segoe UI"> 
                                                             <?php 
                                                                 if($stagiaire['status'] == 0){
-                                                                    echo ' <i class="fa fa-square "  title="En attente" style="color:blue;"> En attente</i> ';
+                                                                    echo ' <i class="fa fa-square "  title="En attente" style="color:orange;"> En attente...</i> ';
                                                                 }elseif($stagiaire['status']==1){
                                                                     echo ' <i class="fa fa-close "  title="Non approuvé" style="color:red"> Non approuvé </i> ';
                                                                 }elseif($stagiaire['status']==2){

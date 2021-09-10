@@ -5,7 +5,7 @@ require_once "../bd/connexion.php"; // Connexion à la BD
 
 $nomS = isset($_GET['nomS']) ? $_GET['nomS'] : "";
 
-$size = isset($_GET['size']) ? $_GET['size'] : 4;
+$size = isset($_GET['size']) ? $_GET['size'] : 5;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page - 1) * $size;
 
@@ -61,42 +61,29 @@ if ($reste == 0) {
             display: block;
         }
         .div1, .div2, .div3, .div4{
-            height: 100px;
-            width: 17%;
+            height: 40px;
+            width: auto;
             border-radius: 5px;
             display: inline-block;
-            margin-top: 8px;
-            margin-right: 20px;
+            margin-top: -26px;
             vertical-align: top;
             margin-bottom: 20px;
             color: white;
-            padding: 10px;
+            padding: 6px;
             font-size: 20px;
         }
 
         .div1{
             background-color: #2b77ba;
         }
-        .div2{
-            background-color: #54a958;
-        }
-        .div3{
-            background-color: #f6ad47;
-        }
-        .div4{
-            background-color: #e45f4b;
-        }
-        .td1{
-            font-size: 40px;
-            color: white;
-            float: right;
-            position: relative;
-        }
-
-        table tr td{
-            height:-1px !important;
-            padding: -45;
-        }
+       table thead{
+           background-color:#32475c;
+           color: white;
+       }
+       table{
+           font-family: Segoe UI;
+           font-size: 17px;
+       }
     </style>
 
     <body>
@@ -110,7 +97,7 @@ if ($reste == 0) {
             <!-- Premier block composé d'entête et du corps (Côté recherche) -->
 
             <div class="panel panel-primary" style="margin-top: 60px;">
-                <div class="panel-heading"><h5 style="font-size:18px"> Recherche des stagiaires...</h5> </div>
+                <div class="panel-heading">Recherche des stagiaires... </div>
                 <div class="panel-body">
                                 <!-- partie corps coté champ text (Taper le nom de la filière) -->
                      <form method="get" action="stagiairesRecommandes.php" class="form-inline">
@@ -132,77 +119,19 @@ if ($reste == 0) {
             </div>
 
             <!-- Deuxième block composé d'entête et du corps (Côté affichage filière) -->
-            <div class="panel panel" style="font-family: 'Raleway', sans-serif; font-size: 16px; border: 1px solid blue">
+            <div class="panel panel">
                 <div class="panel-heading" > </div>
                 <div class="panel-body">
 
                     <!-- Début du tableau -->
 
-                    <h3 style="margin-top: -10px"><i class="fa fa-table"></i> Tableau de Bord &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </h3>
-
-                            <div class="divGeneral">
                                 <div class="div1">
                                     <table>
                                         <tr>
-                                            <td><i style="font-size:60px; color:white" class="fa fa-graduation-cap"></i></td><td></td>
-                                            <td></td><td></td><td></td><td></td><td></td><td></td>
-                                            <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nbrFiliere; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color:white; text-align:center; min-width:120px !important">Stagiaires reçus</td>
+                                            <td style="color: white; font-size: 25px;" class="td1"><?php if($nbrFiliere > 1){ echo $nbrFiliere . " reçus ";}else{ echo $nbrFiliere . ' reçu'; } ?></td>
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="div2">
-                                    <table>
-                                            <tr>
-                                                <td><i style="font-size:60px; color:white" class="fa fa-user"></i></td><td></td>
-                                                <td></td><td></td><td></td><td></td><td></td><td></td>
-                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nbrDataTraites ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color:white; text-align:center">Traités</td>
-                                            </tr>
-                                    </table>
-                                </div>
-                                <div class="div3">
-                                    <table>
-                                            <tr>
-                                                <td><i style="font-size:60px; color:white" class="fa fa-history"></i></td><td></td>
-                                                <td></td><td></td><td></td><td></td><td></td><td></td>
-                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href=''>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color:white; text-align:center">
-                                                    <a href='historique.php' style="color:white; text-decoration : none">History</a>
-                                                </td>
-                                           </tr>
-                                    </table>
-                                </div>
-                                <div class="div4">
-                                    <table>
-                                            <tr>
-                                                <td><i style="font-size:60px; color:white" class="fa fa-close"></i></td><td></td>
-                                                <td></td><td></td><td></td><td></td><td></td><td></td>
-                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <?php
-if ($nbrFiliere == 0) {
-    echo 0;
-} else {
-    echo $nbrFiliere - $nbrDataTraites;
-}
-
-?></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color:white; text-align:center; min-width:100px !important">Non traités</td>
-                                           </tr>
-                                    </table>
-                                </div>
-                            </div>
 
                     <table class="table table-striped table-bordered">
                         <!-- Partie entête du tableau -->
@@ -235,10 +164,10 @@ if ($nbrFiliere == 0) {
                                        
                                            <?php if ($filiere["status"] == 0) {?>
                                             <td>
-                                            <a href="../traitement/activerStagiaire.php?idS=<?php echo $filiere['idS'] ?>&status=<?php echo 2  ?>">
+                                            <a onclick="return confirm('Etes-vous sûr de vouloir accepter ce stagiaire ?')" href="../traitement/activerStagiaire.php?idS=<?php echo $filiere['idS'] ?>&status=<?php echo 2  ?>">
                                                <i class="fa fa-check" style="font-size:20px; color:green">Accepté</i>
-                                            </a>&nbsp;&nbsp;
-                                            <a href="../traitement/activerStagiaire.php?idS=<?php echo $filiere['idS']?>&status=<?php echo 1  ?>">
+                                            </a>&nbsp; ou &nbsp; 
+                                            <a onclick="return confirm('Etes-vous sûr de vouloir rejeter ce stagiaire ?')" href="../traitement/activerStagiaire.php?idS=<?php echo $filiere['idS']?>&status=<?php echo 1  ?>">
                                                <i class="fa fa-close" style="font-size:20px; color:red"> Rejeté</i>
                                             </a>
                                             </td>
@@ -262,9 +191,9 @@ if ($nbrFiliere == 0) {
                         <ul class="pagination pagination-md" >
                             <?php for ($i = 1; $i <= $nbrPage; $i++) {?>
                                <li class="<?php if ($i == $page) {
-    echo 'active';
-}
-    ?>" >
+                                 echo 'active';
+                                    }
+                                    ?>" >
                                    <a href="stagiairesRecommandes.php?page=<?php echo $i; ?>&nomS=<?php echo $nomS ?>">
                                        <?php echo $i; ?>
                                    </a>
