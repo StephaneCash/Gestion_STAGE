@@ -5,7 +5,9 @@
 
     $nomPostnom=isset($_GET['nomPostnom'])?$_GET['nomPostnom']:"";
     $idfiliere=isset($_GET['idF'])?$_GET['idF']:0;
+    $idEntreprise=isset($_GET['idE'])?$_GET['idE']:0;
 
+    
     $size=isset($_GET['size'])?$_GET['size']:8;
     $page=isset($_GET['page'])?$_GET['page']:1;
     $offset=($page-1)*$size;
@@ -14,7 +16,7 @@
     $requeteFiliere = "select * from filiere"; // Requête filière
 
     $requeteE = "select * from entreprise";
-   
+
     if($idfiliere==0){
         $requeteStagiaire="SELECT idS, nomS, postnomS, prenomS, nomF, sexeS, section, niveau, nomE
                   from filiere as f, stagiaire as s, entreprise as en
@@ -26,12 +28,30 @@
         
         $requeteCount="SELECT count(*) countS from stagiaire
                        where nomS like '%$nomPostnom%' or postnomS like '%$nomPostnom%'";
-    }else{
+    }
+
+    /*elseif($idEntreprise !== 0 ){
+        $requeteStagiaire="SELECT idS, nomS, postnomS,prenomS,nomF, sexeS, section, niveau, nomE 
+        from filiere as f, stagiaire as s, entreprise as e
+        where f.idF = s.idF 
+        and (nomS like '%$nomPostnom%' or postnomS like '%$nomPostnom%')
+        and f.idF = $idEntreprise 
+        and e.idE = $idEntreprise
+        order by idS
+        limit $size 
+        offset $offset";
+        
+        $requeteCount="SELECT count(*) countS from stagiaire
+                       where nomS like '%$nomPostnom%' or postnomS like '%$nomPostnom%'";
+    }*/
+    
+    else{
         $requeteStagiaire="SELECT idS, nomS, postnomS,prenomS,nomF, sexeS, section, niveau, nomE 
                   from filiere as f, stagiaire as s, entreprise as e
                   where f.idF = s.idF 
                   and (nomS like '%$nomPostnom%' or postnomS like '%$nomPostnom%')
-                  and f.idF = $idfiliere =e.idE
+                  and f.idF = $idfiliere 
+                  and e.idE = $idfiliere
                   order by idS
                   limit $size 
                   offset $offset";
@@ -83,6 +103,7 @@
             
             <!-- Premier block composé d'entête et du corps (Côté recherche) -->
             <div class="panel panel-success" style="margin-top: 100px; border:none"> 
+                <?php // echo $idEntreprise; ?>
                 <div class="panel-heading"> Recherche des Stagiaires</div>
                 <div class="panel-body" style="border : 1px solid silver;">
                                 <!-- partie corps coté champ text (Taper le nom de la filière) -->
@@ -100,6 +121,18 @@
                                      <option value="<?php echo $filiere['idF'] ?>"
                                 <?php if($filiere['idF']==$idfiliere) { echo 'selected'; } ?> >
                                 <?php echo $filiere['nomF'] ?> </option>   
+                                <?php } ?>    
+                            </select>
+                        </div>
+
+                        <label for="idfiliere"> Entreprise : </label>
+                        <div class="form-group"> 
+                            <select name="idE" class="form-control" id="idfiliere">
+                                <option value=0 > Toutes les entreprise </option>
+                                <?php while($entreprise = $resultatE->fetch()){ ?>
+                                     <option value="<?php echo $entreprise['idE'] ?>"
+                                <?php if($entreprise['idE']==$idEntreprise) { echo 'selected'; } ?> >
+                                <?php echo $entreprise['nomE'] ?> </option>   
                                 <?php } ?>    
                             </select>
                         </div>
@@ -163,7 +196,7 @@
                                                             <td width = "23%"><?php echo $stagiaire['nomF']?></td>
                                                             <td><?php echo $stagiaire['section']?></td>
                                                             <td><?php echo $stagiaire['niveau']?></td>
-                                                        <td><?php echo $stagiaire['nomE'] ;?></td>
+                                                        <td><?php echo $stagiaire['nomE'] ?></td>
                                                         <td>
                                                             <!-- Affichges des glyphicons de rubrique 'Actions' -->
                                                             <a href="editerStagiaire.php?idS=<?php echo $stagiaire['idS'] ?>">

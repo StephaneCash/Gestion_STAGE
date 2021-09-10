@@ -117,7 +117,7 @@
                          </button>
 
                          <a href="ResultatStagiaire.php" style='float : right; border : 1px solid black; height : 40px; padding: 10px;color:white;width: 25%; text-align:center; border-radius : 4px; background: #32475c'>   
-                            <span class="glyphicon glyphicon-plus"> </span>  Insérer les résultats du nouveau Stagiaire
+                            <span class="fa fa-plus-square"> </span>  Insérer les résultats du nouveau Stagiaire
                         </a>
                     </form>     
                 </div>
@@ -130,7 +130,8 @@
                     
                     <!-- Début du tableau -->
 
-                    <h3 style="margin-top: -10px"><i class="fa fa-table"></i> Tableau de Bord </h3>
+                    <h3 style="margin-top: -10px"><i class="fa fa-table"></i> Tableau de Bord &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span style="font-size:14px" class="fa fa-plus-square"> Nouveaux stagiaires</span></h3> 
                             
                             <div class="divGeneral">
                                 <div class="div1">

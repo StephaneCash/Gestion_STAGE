@@ -9,10 +9,5 @@ button{
 }
 
 .navbar{
-    min-height: 200px !important;
-    background-color: red;
-}
-
-body{
-    background-color:red !important;
+    min-height: 100px !important;
 }

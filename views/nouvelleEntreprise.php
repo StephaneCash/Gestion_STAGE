@@ -18,7 +18,7 @@
         <div class="container">  
             
             <!-- Premier block composé d'entête et du corps (Côté recherche) -->
-            <div class="panel panel-primary" style="margin-top: 80px; border: 1px solid #32475c "> 
+            <div class="panel panel-primary" style="margin-top: 100px; border: 1px solid #32475c "> 
                 <div class="panel-heading" style="background:#32475c; "> Saisir les données pour la nouvelle entreprise : </div>
                 <div class="panel-body">
                     

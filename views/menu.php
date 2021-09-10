@@ -5,8 +5,6 @@
         header('location : login.php');    
 ?>
 
-<link rel="stylesheet" type="text/css" href="../css/Menu.css">
-
 <style>
     .navbar{
         min-height: 80px;

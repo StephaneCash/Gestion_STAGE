@@ -33,6 +33,7 @@
         $nbrPage = $nbrFiliere/$size;
     else
         $nbrPage=floor($nbrFiliere/$size)+1;
+        
 
 ?>
 
