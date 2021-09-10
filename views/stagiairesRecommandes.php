@@ -9,8 +9,14 @@
     $page=isset($_GET['page'])?$_GET['page']:1;
     $offset=($page-1)*$size;
 
-    $recupereeDataStagTraites = "SELECT * FROM resultat";
-   
+    $recupereeDataStagTraites = "SELECT count(*) countData FROM resultat"; // Recuperation data traites
+    //echo $recupereeDataStagTraites;
+
+    $requeDataTraites = $pdo->query($recupereeDataStagTraites);
+    $dataTraites = $requeDataTraites->fetch();
+    $nbrDataTraites = $dataTraites['countData'];
+
+
     // Vérification sur le choix de niveau de filière
     if($nomS==$nomS){
     // Exécution de la requete
@@ -96,7 +102,7 @@
     <body>
         
         <!-- Insertion de la page menu -->
-        <?php include("menu.php") ?> 
+        <?php  include("menu.php") ?> 
         
         <div class="container-fluid">
             <div class="row">
@@ -153,7 +159,7 @@
                                             <tr>
                                                 <td><i style="font-size:60px; color:white" class="fa fa-user"></i></td><td></td>
                                                 <td></td><td></td><td></td><td></td><td></td><td></td>
-                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</td>
+                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nbrDataTraites ?></td>
                                             </tr>
                                             <tr>
                                                 <td style="color:white; text-align:center">Traités</td>
@@ -177,7 +183,7 @@
                                             <tr>
                                                 <td><i style="font-size:60px; color:white" class="fa fa-close"></i></td><td></td>
                                                 <td></td><td></td><td></td><td></td><td></td><td></td>
-                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4</td>
+                                                <td class="td1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nbrFiliere - $nbrDataTraites;  ?></td>
                                             </tr>
                                             <tr>
                                                 <td style="color:white; text-align:center; min-width:120px !important">Non traités</td>
